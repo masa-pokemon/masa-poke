@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プレイヤー画面</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script defer src="firebase-init.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <script defer src="player.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="nameSection">
+      <div style="margin-top: 10px;">
+        <h2>ファミリーを選択してください</h2>
+        <label for="groupSelect">ファミリーを選択：</label>
+        <select id="groupSelect">
+          <option value="">読み込み中...</option>
+        </select>
+      </div>
+      <br>
+      <h2>プレイヤー名を入力してください</h2>
+      <input type="text" id="playerNameInput" placeholder="チーム名または名前" />
+      <div style="text-align: center; margin: 2em 0;">
+      <button id="startGameBtn">開始する</button>
+      </div>
+    </div>
+
+    <div id="gameSection" class="hidden">
+      <h2 id="gameMessage">QRコードを読み込んでください</h2>
+      <button id="scanQRBtn">QRコードをスキャン</button>
+
+      <div id="qrScanner" class="hidden">
+        <video id="qrVideo" autoplay muted playsinline style="width: 100%; max-width: 400px;"></video>
+        <canvas id="qrCanvas" class="hidden"></canvas>
+        <button id="cancelScanBtn">キャンセル</button>
+      </div>
+
+      <div id="quizSection" class="hidden">
+        <h3 id="quizQuestion"></h3>
+        <img id="quizImage" src="" alt="" style="max-width: 100%; display: none; margin-top: 10px;" />
+        <div id="quizOptions"></div>
+        <input type="text" id="textAnswerInput" class="hidden" placeholder="回答を入力" />
+        <button id="bonusButton" style="margin-top: 10px;">ボーナスを使う（1回限り）</button>
+        <button id="submitAnswerBtn">回答する</button>
+      </div>
+
+      <div id="resultSection" class="hidden">
+        <h3 id="resultMessage"></h3>
+        <div id="rankingSection"></div>
+        <button id="nextQuizBtn">次の問題へ</button>
+        <button id="endGameBtn">ゲーム終了</button>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button onclick="location.href='index.html'">🏠 ホームに戻る</button>
+      </div>
+    </div>
+
+    <div id="finalSection" class="hidden">
+      <h2>ゲーム終了</h2>
+      <p id="finalScore"></p>
+      <p id="finalRank"></p>
+      <button onclick="location.reload()">最初に戻る</button>
+    </div>
+  </div>
+</body>
+</html>
