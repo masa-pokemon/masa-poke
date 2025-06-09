@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プレイヤー一覧</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script defer src="firebase-init.js"></script>
+  <script defer src="list.js"></script>
+</head>
+<body>
+  <div class="container">
+    <hr />
+    <h2>ファミリー別ランキング</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>ファミリー名</th>
+          <th>合計ポイント</th>
+        </tr>
+      </thead>
+      <tbody id="groupTableBody"></tbody>
+    </table>
+    <br>
+
+    <h2>参加チーム別ランキング</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>🏅 順位</th>
+          <th>チーム名</th>
+          <th>ファミリー名</th>
+          <th>ポイント</th>
+        </tr>
+      </thead>
+      <tbody id="scoreTableBody">
+        <tr>
+          <td colspan="3">読み込み中...</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 1em;">
+      <button onclick="location.reload()">🔄 更新</button>
+      <button onclick="location.href='index.html'">🏠 戻る</button>
+    </div>
+  </div>
+</body>
+</html>
