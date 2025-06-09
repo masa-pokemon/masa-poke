@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>管理者画面</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+  <script defer src="firebase-init.js"></script>
+  <script defer src="admin.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>管理者画面</h1>
+    <div style="text-align: center; margin: 2em 0;">
+      <button onclick="location.href='list.html'" style="font-size: 1.2em; padding: 0.8em 2em; cursor: pointer;">
+        📊 ランキングへ
+      </button>
+    </div>
+    <br>
+    <h2>クイズ登録</h2>
+    <form id="quizForm">
+      <div>
+        <label>問題文を入力してください</label>
+        <input type="text" id="questionInput" required /><br><br>
+      </div>
+      <label for="difficultySelect">難易度（★）:</label>
+      <select id="difficultySelect" required>
+        <option value="1">☆☆★（かんたん）</option>
+        <option value="2">☆★★（ふつう）</option>
+        <option value="3">★★★（むずかしい）</option>
+        <option value="10">★★★★★（おに）</option>
+      </select>
+      <br>
+      <br>
+      <div>
+        <label>回答形式を選択してください</label><br />
+        <label><input type="radio" name="type" id="typeChoice" checked /> 選択式</label>
+        <label><input type="radio" name="type" id="typeText" /> 記述式</label>
+        <br><br>
+      </div>
+
+      <div id="choiceOptions">
+        <label>選択肢と正解：</label><br />
+        <input type="text" id="option1" placeholder="選択肢1" />
+        <input type="radio" name="correctOption" value="1" /> 正解<br />
+        <input type="text" id="option2" placeholder="選択肢2" />
+        <input type="radio" name="correctOption" value="2" /> 正解<br />
+        <input type="text" id="option3" placeholder="選択肢3" />
+        <input type="radio" name="correctOption" value="3" /> 正解<br />
+        <input type="text" id="option4" placeholder="選択肢4" />
+        <input type="radio" name="correctOption" value="4" /> 正解<br />
+        <br>
+      </div>
+
+      <div id="textAnswer" class="hidden">
+        <label>正解</label>
+        <input type="text" id="textCorrect" />
+        <br>
+      </div>
+
+      <div>
+        <label>画像ファイル（問題に表示したい画像を追加できます）</label>
+        <input type="file" id="imageInput" accept="image/*" />
+        <br>
+        <br>
+      </div>
+
+      <button type="submit">登録</button>
+      <br>
+      <br>
+    </form>
+
+    <div id="qrSection" class="hidden">
+      <h2>QRコードが生成されました</h2>
+      <img id="qrImage" />
+      <p><a id="quizLink" href="#" target="_blank">クイズを開く</a></p>
+      <br>
+      <br>
+    </div>
+
+    <hr />
+    <h2>登録済みクイズ一覧　<font size="2">＊ここでクイズの編集，QRコードの表示，クイズの削除ができます＊</font></h2>
+    <div id="quizList"></div>
+    <br>
+    <br>
+
+    <hr />
+    <h2>ファミリー管理</h2>
+    <form id="groupForm">
+      <input type="text" id="groupNameInput" placeholder="新しいファミリー名を入力" required />
+      <button type="submit">追加</button>
+    </form>
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th>ファミリー名</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="groupList"></tbody>
+    </table>
+
+    <hr />
+    <h2>参加チーム一覧　<font size="2">＊ここで参加者の削除ができます＊</font></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>参加チーム名</th>
+          <th>ファミリー名</th>
+          <th>ポイント数</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="playerList"></tbody>
+    </table>
+  </div>
+</body>
+</html>
